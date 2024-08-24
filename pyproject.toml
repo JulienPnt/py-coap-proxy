@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "py_coap_proxy"
+version = "0.0.1"
+authors = [
+  { name="Julien PORNET", email="" },
+]
+description = "CoAP's proxy library developed for testing purpose."
+readme = "README.md"
+requires-python = ">=3.11.7"
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Embedded Systems",
+
+]
+dependencies = [
+  "bcrypt==4.2.0",
+  "certifi==2024.7.4",
+  "cffi==1.17.0",
+  "charset-normalizer==3.3.2",
+  "cryptography==43.0.0",
+  "idna==3.7",
+  "psutil==6.0.0",
+  "pycparser==2.22",
+  "PyNaCl==1.5.0",
+  "requests==2.32.3",
+  "scapy==2.5.0",
+  "urllib3==2.2.2"
+]
+[project.urls]
+Homepage = "https://github.com/julienpornet34800/py-coap-proxy"
+Issues = "https://github.com/julienpornet34800/py-coap-proxy/issues"
