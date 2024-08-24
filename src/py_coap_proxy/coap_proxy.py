@@ -59,7 +59,7 @@ class CoAPProxy:
         logging.basicConfig(encoding='utf-8',
                             level=logging.DEBUG,
                             format='[%(asctime)s] <%(filename)s:%(lineno)s> \
-                            %(levelname)s: %(message)s',
+%(levelname)s: %(message)s',
                             handlers=[logging.StreamHandler(sys.stdout)])
         self.log_lock = asyncio.Lock()  # Adding a lock for logging
         self.packet_queue = queue.Queue()  # Queue for packet processing
@@ -111,7 +111,7 @@ class CoAPProxy:
             AsyncSniffer: The sniffer object for the client interface.
         """
         filter = f'udp dst port {self.client_dport} and \
-        src host {self.client_ip}'
+src host {self.client_ip}'
         self.logger.debug(
             f"Client filter {filter} is set on interface {self.client_iface}")
         self.flush_logging_buffer()
@@ -127,7 +127,7 @@ class CoAPProxy:
             AsyncSniffer: The sniffer object for the server interface.
         """
         filter = f'udp src port {self.server_dport} and \
-        src host {self.server_ip}'
+src host {self.server_ip}'
         self.logger.debug(
             f"Server filter {filter} is set on interface {self.server_iface}")
         self.flush_logging_buffer()
