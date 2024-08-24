@@ -59,16 +59,9 @@ Using `libcoap` package:
 coap-server -A 127.0.0.1
 ```
 ## Step 2: Run your Proxy (Administrator Rights May Be Required)
-```
+``` bash
 sudo python3 tests/coap-proxy-standard-example.py
 ```
-*Warning*: `sudo` changes the environment and **might use a different Python environment where the py_coap_proxy package is not installed**.
-Solutions:
-1. Running with sudo and Correct Environment:
-- Use the -E option with sudo to preserve the user environment, including Python paths: ```sudo -E python3 tests/coap-proxy-standard-example.py```
-- Alternatively, explicitly set the PYTHONPATH environment variable with sudo: ```sudo PYTHONPATH=$PYTHONPATH python3 tests/coap-proxy-standard-example.py```
-2. Installing the Package for `sudo`: ```sudo pip3 install dist/py_coap_proxy-0.0.1.tar.gz```
-
 ### ⚠️ Warning: Environment Mismatch with `sudo`
 **Warning**: Running scripts with `sudo` can alter the environment and may cause **Python to use a different environment where the `py_coap_proxy` package is not installed**. This can lead to errors such as `ModuleNotFoundError`.
 **Solution**s:
