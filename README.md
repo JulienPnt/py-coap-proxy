@@ -23,8 +23,8 @@ pip3 install dist/py_coap_proxy-0.0.1.tar.gz
 # Example of use
 ## Before to start
 If you don't have a CoAP client or server, you can install the libcoap package: libcoap.net.
-Below is an example of code using a basic CoAP proxy:
-```
+Below is the `py-coap-proxy/tests/coap-proxy-standard-example.py` which opens a basic CoAPProxy's gate.
+```python3
 from py_coap_proxy import CoAPProxy
 import sys, asyncio
 
@@ -60,8 +60,36 @@ coap-server -A 127.0.0.1
 ```
 ## Step 2: Run your Proxy (Administrator Rights May Be Required)
 ```
-sudo python3 example.py
+sudo python3 tests/coap-proxy-standard-example.py
 ```
+*Warning*: `sudo` changes the environment and **might use a different Python environment where the py_coap_proxy package is not installed**.
+Solutions:
+1. Running with sudo and Correct Environment:
+- Use the -E option with sudo to preserve the user environment, including Python paths: ```sudo -E python3 tests/coap-proxy-standard-example.py```
+- Alternatively, explicitly set the PYTHONPATH environment variable with sudo: ```sudo PYTHONPATH=$PYTHONPATH python3 tests/coap-proxy-standard-example.py```
+2. Installing the Package for `sudo`: ```sudo pip3 install dist/py_coap_proxy-0.0.1.tar.gz```
+
+### ⚠️ Warning: Environment Mismatch with `sudo`
+**Warning**: Running scripts with `sudo` can alter the environment and may cause **Python to use a different environment where the `py_coap_proxy` package is not installed**. This can lead to errors such as `ModuleNotFoundError`.
+**Solution**s:
+1. **Run with `sudo` While Preserving the Python Environment:**
+   - Use the `-E` option with `sudo` to preserve the user environment, including Python paths:
+     ```bash
+     sudo -E python3 tests/coap-proxy-standard-example.py
+     ```
+   - Alternatively, explicitly set the `PYTHONPATH` environment variable with `sudo`:
+     ```bash
+     sudo PYTHONPATH=$PYTHONPATH python3 tests/coap-proxy-standard-example.py
+     ```
+2. **Install the Package Globally for `sudo`:**
+
+   - Install the `py_coap_proxy` package in the global environment so it is accessible when running with `sudo`:
+     ```bash
+     sudo pip3 install dist/py_coap_proxy-0.0.1.tar.gz
+     ```
+By following these steps, you can ensure that your script runs successfully with the necessary permissions and in the correct environment.
+
+
 ## Step 3: Send an CoAP request through your CoAP client
 Using `libcoap` package: 
 ```
