@@ -10,8 +10,11 @@ from scapy.packet import bind_layers
 
 import logging
 
-from .network_utils import set_ip_address, resolve_mac, get_private_ip_address
-from .logs import str_packet_info, AFORWARDED, ARECEIVED, OCLIENT, OSERVER
+from .utils.network_utils import set_ip_address, \
+    resolve_mac, get_private_ip_address
+
+from .utils.logs import str_packet_info, \
+    AFORWARDED, ARECEIVED, OCLIENT, OSERVER
 
 
 class CoAPProxy:
