@@ -1,14 +1,15 @@
 from scapy.contrib.coap import CoAP
 
-from .coap_block_options import CoAPBlockOption, get_coap_block_opt
+from .coap_options import extract_block2_option, extract_block1_option
+from .coap_block_options import CoAPBlockOption
+
 
 AFORWARDED = "Forwarded"
-ARECEIVED = "Received"
-OCLIENT = "client"
-OSERVER = "server"
+ARECEIVED  = "Received"
+OCLIENT    = "client"
+OSERVER    = "server"
 
 coap_type = {0: "CON", 1: "NON", 2: "ACK", 3: "RST"}
-
 
 class bcolors:
     HEADER = '\033[95m'
@@ -23,20 +24,22 @@ class bcolors:
 
 
 def str_packet_info(packet, origin, action):
-    if (action == AFORWARDED):
-        str = f'{bcolors.OKBLUE} {action} to {origin} \
-        {bcolors.ENDC}:\n{packet}'
+    if (action == AFORWARDED): 
+        str=f'{bcolors.OKBLUE} {action} to {origin} {bcolors.ENDC}:\t{packet}'
     else:
-        str = f'{bcolors.OKGREEN} {action} from {origin} \
-        {bcolors.ENDC}:\n{packet}'
-    if CoAP in packet:
-        coap_layer = packet[CoAP]
-        str += f'\nCoAP Message ID: {coap_layer.msg_id}, \
-        Type: {coap_type[coap_layer.type]} ({coap_layer.type}), \
-        Code: {coap_layer.code}'
-        block_opt = get_coap_block_opt(coap_layer.options)
-        if (block_opt is not None):
-            str += f"\nBlock2 {CoAPBlockOption(block_opt).get_block_opt()}"
-        else:
-            str += "\nNo Block2"
+        str=f'{bcolors.OKGREEN} {action} from {origin} {bcolors.ENDC}:\t{packet}'
+#    if CoAP in packet:
+#        coap_layer = packet[CoAP]
+#        str+=f'\nCoAP Message ID: {coap_layer.msg_id}, Type: {coap_type[coap_layer.type]} ({coap_layer.type}), Code: {coap_layer.code}'
+#        block_opt = extract_block2_option(coap_layer.options)
+#        if(block_opt != None):
+#            str += f"\nBlock2 {CoAPBlockOption(block_opt).get_block_opt()}"
+#        else:
+#            str += "\nNo Block2"
+#        block_opt = extract_block1_option(coap_layer.options)
+#        if(block_opt != None):
+#            str += f"\nBlock1 {CoAPBlockOption(block_opt).get_block_opt()}"
+#        else:
+#            str += "\nNo Block1"
+
     return str
